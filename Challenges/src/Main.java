@@ -6,7 +6,30 @@ import  java.util.HashMap;
 import  java.util.HashSet;
 import  java.util.Arrays;
 
+
+
+
+
 public class Main {
+    public static void permute(String str, int left, int right) {
+        if (left == right) {
+            System.out.println(str);
+        } else {
+            for (int i = left; i <= right; i++) {
+                str = swap(str, left, i);
+                permute(str, left + 1, right);
+                str = swap(str, left, i); // backtrack
+            }
+        }
+    }
+
+    public static String swap(String s, int i, int j) {
+        char[] charArr = s.toCharArray();
+        char temp = charArr[i];
+        charArr[i] = charArr[j];
+        charArr[j] = temp;
+        return String.valueOf(charArr);
+    }
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Random random = new Random();
@@ -178,43 +201,79 @@ public class Main {
 
         /////////////////////----11----/////////////////////
 
-
-        String sentence = "le chat et le chien et le chat";
-        String[] words = sentence.split(" ");
-
-        HashMap<String , Integer> result = new HashMap<>();
-        for (String i : words){
-            result.put(i , result.getOrDefault(i, 0) + 1);
-        }
-        String mostFrequent = "";
-        int max = 0;
-
-        for (String key : result.keySet()) {
-            if (result.get(key) > max) {
-                max = result.get(key);
-                mostFrequent = key;
-            }
-        }
-
-        System.out.println("Mot le plus fréquent : " + mostFrequent);
-
-
+//
+//        String sentence = "le chat et le chien et le chat";
+//        String[] words = sentence.split(" ");
+//
+//        HashMap<String , Integer> result = new HashMap<>();
+//        for (String i : words){
+//            result.put(i , result.getOrDefault(i, 0) + 1);
+//        }
+//        String mostFrequent = "";
+//        int max = 0;
+//
+//        for (String key : result.keySet()) {
+//            if (result.get(key) > max) {
+//                max = result.get(key);
+//                mostFrequent = key;
+//            }
+//        }
+//
+//        System.out.println("Mot le plus fréquent : " + mostFrequent);
 
 
 
 
+        /////////////////////----12----/////////////////////
+
+
+//        int[] table = {1, 5, 5 ,5, 7, 2, 2};
+//        int right = 0;
+//        int left = 0;
+//        int y = table.length -1;
+//
+//        for (int i = 0 ; i < table.length ; i++){
+//            left += table[i];
+//            System.out.println("Left: "+left);
+//            right += table[y];
+//            System.out.println("Right: "+right);
+//            if (left == right){
+//                System.out.println(i+1);
+//                break;
+//            }
+//            y--;
+//        }
+
+
+
+        /////////////////////----13----/////////////////////
+
+
+//        String word = scanner.nextLine();
+//        int max = 0;
+//        HashSet<Character> uniqeWord = new HashSet<>();
+//        char[] wordArr = word.toCharArray();
+//        for (char i : wordArr){
+//            if (uniqeWord.add(i)){
+//                uniqeWord.add(i);
+//                max++;
+//            }else {
+//                for (char y : uniqeWord){
+//                    System.out.printf("" +y);
+//                }
+//                System.out.println("--> " + max);
+//                break;
+//            }
+//        }
+
+
+        /////////////////////----14----/////////////////////
 
 
 
 
-
-
-
-
-
-
-
-
+        String word = "ABC";
+        permute(word , 0 , word.length() -1);
 
 
 
@@ -222,3 +281,4 @@ public class Main {
 
 
 }
+
